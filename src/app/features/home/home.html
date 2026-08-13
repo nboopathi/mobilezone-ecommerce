@@ -1,0 +1,200 @@
+<!-- HERO SECTION -->
+<section class="hero-section">
+
+  <div class="container hero-container">
+
+    <div class="hero-content">
+
+      <span class="hero-tag">
+        🔥 Trending Accessories
+      </span>
+
+      <h1>
+        Upgrade Your
+        <span>Mobile Experience</span>
+      </h1>
+
+      <p>
+        Discover premium mobile accessories at the best prices.
+        Cases, chargers, cables, earbuds and much more.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="primary-btn">
+          Shop Now
+        </button>
+
+        <button class="secondary-btn">
+          Explore Categories
+        </button>
+      </div>
+
+    </div>
+
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1601593346740-925612772716?w=900"
+        alt="Mobile Accessories"
+      />
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+<section class="categories-section">
+
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <span>SHOP BY CATEGORY</span>
+        <h2>Everything Your Mobile Needs</h2>
+      </div>
+
+      <button>View All →</button>
+    </div>
+
+    <div class="categories-grid">
+
+      <div
+        class="category-card"
+        *ngFor="let category of categories"
+      >
+
+        <div class="category-image">
+          <img
+            [src]="category.image"
+            [alt]="category.name"
+          />
+        </div>
+
+        <h3>{{ category.name }}</h3>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FEATURED PRODUCTS -->
+<section class="products-section">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div>
+        <span>POPULAR PRODUCTS</span>
+        <h2>Featured Accessories</h2>
+      </div>
+
+      <button>View All →</button>
+
+    </div>
+
+    <div class="products-grid">
+
+      <div class="product-card" *ngFor="let product of products" (click)="viewProduct(product.id)">
+
+        <div class="product-image">
+
+          <span class="discount-badge">
+            {{ product.discount }}% OFF
+          </span>
+
+          <img
+            [src]="product.image"
+            [alt]="product.name"
+          />
+
+          <button class="wishlist-btn">
+            ♡
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <h3>{{ product.name }}</h3>
+
+          <div class="rating">
+            ★ {{ product.rating }}
+          </div>
+
+          <div class="price">
+
+            <strong>
+              ₹{{ product.price }}
+            </strong>
+
+            <span>
+              ₹{{ product.originalPrice }}
+            </span>
+
+          </div>
+
+          <button class="add-cart-btn">
+            Add to Cart
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- WHY CHOOSE US -->
+<section class="benefits-section">
+
+  <div class="container benefits-grid">
+
+    <div class="benefit">
+      <span>🚚</span>
+
+      <div>
+        <h3>Fast Delivery</h3>
+        <p>Quick and secure delivery</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <span>🔒</span>
+
+      <div>
+        <h3>Secure Payment</h3>
+        <p>100% safe transactions</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <span>💰</span>
+
+      <div>
+        <h3>Best Prices</h3>
+        <p>Premium products, great value</p>
+      </div>
+    </div>
+
+    <div class="benefit">
+      <span>📦</span>
+
+      <div>
+        <h3>Easy Returns</h3>
+        <p>Simple and hassle-free</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>

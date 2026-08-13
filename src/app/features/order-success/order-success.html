@@ -1,0 +1,108 @@
+<div class="success-page" *ngIf="order">
+
+  <div class="container">
+
+    <div class="success-card">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h1>Order Placed Successfully!</h1>
+
+      <p class="success-message">
+        Thank you for shopping with MOBILEZONE.
+        Your order has been placed successfully.
+      </p>
+
+
+      <div class="order-id-box">
+
+        <span>Order ID</span>
+
+        <strong>
+          {{ order.orderId }}
+        </strong>
+
+      </div>
+
+
+      <div class="order-details">
+
+        <div class="detail-row">
+
+          <span>Payment Method</span>
+
+          <strong>
+            {{ order.paymentMethod }}
+          </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+          <span>Total Amount</span>
+
+          <strong class="amount">
+            ₹{{ order.amount }}
+          </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+          <span>Items</span>
+
+          <strong>
+            {{ order.items.length }} Product(s)
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="delivery-box">
+
+        <h3>📍 Delivery Address</h3>
+
+        <p>
+          <strong>{{ order.address.name }}</strong>
+        </p>
+
+        <p>
+          {{ order.address.addressLine }}
+        </p>
+
+        <p>
+          {{ order.address.city }},
+          {{ order.address.state }}
+          - {{ order.address.pincode }}
+        </p>
+
+        <p>
+          📞 {{ order.address.mobile }}
+        </p>
+
+      </div>
+
+
+      <div class="delivery-message">
+        🚚 Your order will be delivered within 3-5 business days.
+      </div>
+
+
+      <button
+        class="continue-btn"
+        (click)="continueShopping()"
+      >
+        Continue Shopping
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

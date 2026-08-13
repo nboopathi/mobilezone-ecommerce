@@ -1,0 +1,173 @@
+<div class="cart-page">
+
+  <div class="container">
+
+    <div class="cart-header">
+      <div>
+        <h1>Shopping Cart</h1>
+        <p>
+          {{ cartService.getCartCount() }} item(s) in your cart
+        </p>
+      </div>
+
+      <button (click)="continueShopping()">
+        ← Continue Shopping
+      </button>
+    </div>
+
+
+    <div
+      class="empty-cart"
+      *ngIf="cartService.cartItems().length === 0"
+    >
+
+      <div class="empty-icon">🛒</div>
+
+      <h2>Your cart is empty</h2>
+
+      <p>
+        Looks like you haven't added anything yet.
+      </p>
+
+      <button (click)="continueShopping()">
+        Start Shopping
+      </button>
+
+    </div>
+
+
+    <div
+      class="cart-layout"
+      *ngIf="cartService.cartItems().length > 0"
+    >
+
+      <!-- CART ITEMS -->
+
+      <div class="cart-items">
+
+        <div
+          class="cart-item"
+          *ngFor="let item of cartService.cartItems()"
+        >
+
+          <div class="item-image">
+            <img
+              [src]="item.image"
+              [alt]="item.name"
+            >
+          </div>
+
+
+          <div class="item-details">
+
+            <h3>{{ item.name }}</h3>
+
+            <div class="item-price">
+
+              <strong>
+                ₹{{ item.price }}
+              </strong>
+
+              <span>
+                ₹{{ item.originalPrice }}
+              </span>
+
+            </div>
+
+
+            <div class="quantity-row">
+
+              <span>Quantity:</span>
+
+              <div class="quantity-control">
+
+                <button
+                  (click)="decreaseQuantity(item.id, item.quantity)"
+                >
+                  −
+                </button>
+
+                <strong>
+                  {{ item.quantity }}
+                </strong>
+
+                <button
+                  (click)="increaseQuantity(item.id, item.quantity)"
+                >
+                  +
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="item-actions">
+
+            <strong class="item-total">
+              ₹{{ item.price * item.quantity }}
+            </strong>
+
+            <button
+              class="remove-btn"
+              (click)="removeItem(item.id)"
+            >
+              Remove
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ORDER SUMMARY -->
+
+      <aside class="order-summary">
+
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong>
+            ₹{{ cartService.getSubtotal() }}
+          </strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Delivery</span>
+
+          <strong class="free">
+            FREE
+          </strong>
+        </div>
+
+        <div class="summary-row total">
+          <span>Total</span>
+
+          <strong>
+            ₹{{ cartService.getSubtotal() }}
+          </strong>
+        </div>
+
+        <button
+          class="checkout-btn"
+          (click)="proceedToCheckout()"
+        >
+          Proceed to Checkout →
+        </button>
+
+        <div class="secure-checkout">
+          🔒 Secure Checkout
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+
+</div>

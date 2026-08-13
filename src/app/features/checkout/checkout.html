@@ -1,0 +1,256 @@
+<div class="checkout-page">
+
+  <div class="container">
+
+    <div class="checkout-title">
+      <button class="back-btn" (click)="goBackToCart()"> ← Back to Cart</button>
+      <h1>Checkout</h1>
+      <p>Complete your order securely</p>
+    </div>
+
+    <div
+      class="checkout-layout"
+      *ngIf="cartService.cartItems().length > 0"
+    >
+
+      <!-- LEFT SIDE -->
+
+      <div class="checkout-form">
+
+        <div class="checkout-card">
+
+          <h2>📍 Delivery Address</h2>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label>Full Name *</label>
+
+              <input
+                type="text"
+                [(ngModel)]="address.name"
+                placeholder="Enter your name"
+              >
+            </div>
+
+
+            <div class="form-group">
+              <label>Mobile Number *</label>
+
+              <input
+                type="tel"
+                [(ngModel)]="address.mobile"
+                placeholder="10 digit mobile number"
+              >
+            </div>
+
+
+            <div class="form-group full-width">
+              <label>Email</label>
+
+              <input
+                type="email"
+                [(ngModel)]="address.email"
+                placeholder="Enter your email"
+              >
+            </div>
+
+
+            <div class="form-group full-width">
+              <label>Address *</label>
+
+              <textarea
+                rows="3"
+                [(ngModel)]="address.addressLine"
+                placeholder="House number, street, area"
+              ></textarea>
+            </div>
+
+
+            <div class="form-group">
+              <label>City *</label>
+
+              <input
+                type="text"
+                [(ngModel)]="address.city"
+                placeholder="City"
+              >
+            </div>
+
+
+            <div class="form-group">
+              <label>State *</label>
+
+              <input
+                type="text"
+                [(ngModel)]="address.state"
+                placeholder="State"
+              >
+            </div>
+
+
+            <div class="form-group">
+              <label>Pincode *</label>
+
+              <input
+                type="text"
+                [(ngModel)]="address.pincode"
+                placeholder="Pincode"
+              >
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="checkout-card">
+
+          <h2>💳 Payment Method</h2>
+
+          <label
+            class="payment-option"
+            [class.active]="selectedPayment === 'cod'"
+          >
+
+            <input
+              type="radio"
+              value="cod"
+              [(ngModel)]="selectedPayment"
+            >
+
+            <div>
+              <strong>Cash on Delivery</strong>
+              <p>Pay when your order is delivered</p>
+            </div>
+
+          </label>
+
+
+          <label
+            class="payment-option"
+            [class.active]="selectedPayment === 'online'"
+          >
+
+            <input
+              type="radio"
+              value="online"
+              [(ngModel)]="selectedPayment"
+            >
+
+            <div>
+              <strong>Online Payment</strong>
+              <p>UPI, Credit Card, Debit Card & Net Banking</p>
+            </div>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT SIDE -->
+
+      <aside class="order-summary">
+
+        <h2>Order Summary</h2>
+
+        <div
+          class="checkout-product"
+          *ngFor="let item of cartService.cartItems()"
+        >
+
+          <img
+            [src]="item.image"
+            [alt]="item.name"
+          >
+
+          <div>
+            <h4>{{ item.name }}</h4>
+
+            <p>
+              Qty: {{ item.quantity }}
+            </p>
+          </div>
+
+          <strong>
+            ₹{{ item.price * item.quantity }}
+          </strong>
+
+        </div>
+
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+
+          <strong>
+            ₹{{ cartService.getSubtotal() }}
+          </strong>
+        </div>
+
+
+        <div class="summary-row">
+          <span>Delivery</span>
+
+          <strong class="free">
+            FREE
+          </strong>
+        </div>
+
+
+        <div class="summary-row total">
+          <span>Total Amount</span>
+
+          <strong>
+            ₹{{ cartService.getSubtotal() }}
+          </strong>
+        </div>
+
+
+        <button
+          class="place-order-btn"
+          (click)="placeOrder()"
+        >
+
+          {{
+            selectedPayment === 'cod'
+              ? 'Place Order - COD'
+              : 'Pay Securely'
+          }}
+
+        </button>
+
+        <div class="secure-text">
+          🔒 100% Secure Checkout
+        </div>
+
+      </aside>
+
+    </div>
+
+
+    <!-- EMPTY CHECKOUT -->
+
+    <div
+      class="empty-checkout"
+      *ngIf="cartService.cartItems().length === 0"
+    >
+
+      <div>🛒</div>
+
+      <h2>Your cart is empty</h2>
+
+      <button routerLink="/">
+        Continue Shopping
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

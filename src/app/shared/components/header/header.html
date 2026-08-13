@@ -1,0 +1,145 @@
+<header class="main-header">
+
+  <!-- TOP HEADER -->
+  <div class="header-container">
+
+    <!-- MOBILE MENU -->
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      ☰
+    </button>
+
+    <!-- LOGO -->
+    <a routerLink="/" class="logo">
+      <span class="logo-main">MOBILE</span>
+      <span class="logo-accent">ZONE</span>
+    </a>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <span class="search-icon">⌕</span>
+
+      <input
+        type="text"
+        placeholder="Search for cases, chargers, cables..."
+      />
+    </div>
+
+    <!-- DESKTOP ACTIONS -->
+    <div class="header-actions">
+
+      <a routerLink="/login" class="header-action">
+        <span class="action-icon">👤</span>
+        <span class="action-text">Login</span>
+      </a>
+
+      <a routerLink="/wishlist" class="header-action">
+        <span class="action-icon">♡</span>
+        <span class="action-text">Wishlist</span>
+      </a>
+
+      <a routerLink="/cart" class="header-action cart-action" (click)="goToCart()">
+        <span class="cart-icon">🛒</span>
+        <span class="action-text">Cart</span>
+        <span class="cart-count" *ngIf="cartService.getCartCount() > 0">
+            {{ cartService.getCartCount() }}
+        </span>
+      </a>
+
+    </div>
+
+    <!-- MOBILE SEARCH BUTTON -->
+    <button class="mobile-search-btn" (click)="toggleSearch()">
+      🔍
+    </button>
+
+  </div>
+
+
+  <!-- MOBILE SEARCH -->
+  <div class="mobile-search" *ngIf="isSearchOpen">
+
+    <div class="mobile-search-inner">
+      <input
+        type="text"
+        placeholder="Search products..."
+      />
+
+      <button (click)="toggleSearch()">✕</button>
+    </div>
+
+  </div>
+
+
+  <!-- DESKTOP NAVIGATION -->
+  <nav class="desktop-nav">
+
+    <div class="container nav-container">
+
+      <a routerLink="/">Home</a>
+
+      <a routerLink="/products">All Products</a>
+
+      <a href="#">Mobile Cases</a>
+
+      <a href="#">Chargers</a>
+
+      <a href="#">Cables</a>
+
+      <a href="#">Power Banks</a>
+
+      <a href="#">Earbuds</a>
+
+      <a href="#">Smart Watches</a>
+
+      <a href="#">Offers 🔥</a>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+<!-- MOBILE SIDE MENU -->
+<div
+  class="mobile-overlay"
+  *ngIf="isMobileMenuOpen"
+  (click)="closeMobileMenu()"
+></div>
+
+<aside class="mobile-menu" [class.open]="isMobileMenuOpen">
+
+  <div class="mobile-menu-header">
+
+    <div>
+      <strong>MOBILE<span>ZONE</span></strong>
+      <p>Mobile Accessories Store</p>
+    </div>
+
+    <button (click)="closeMobileMenu()">✕</button>
+
+  </div>
+
+  <nav class="mobile-nav">
+
+    <a routerLink="/" (click)="closeMobileMenu()">🏠 Home</a>
+
+    <a routerLink="/products" (click)="closeMobileMenu()">
+      🛍️ All Products
+    </a>
+
+    <a href="#" (click)="closeMobileMenu()">📱 Mobile Cases</a>
+
+    <a href="#" (click)="closeMobileMenu()">⚡ Chargers</a>
+
+    <a href="#" (click)="closeMobileMenu()">🔌 Cables</a>
+
+    <a href="#" (click)="closeMobileMenu()">🎧 Earbuds</a>
+
+    <a href="#" (click)="closeMobileMenu()">⌚ Smart Watches</a>
+
+    <a href="#" (click)="closeMobileMenu()">🔥 Offers</a>
+
+  </nav>
+
+</aside>

@@ -1,0 +1,243 @@
+<div class="product-page" *ngIf="product">
+
+  <div class="container">
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      Home
+      <span>/</span>
+      Products
+      <span>/</span>
+      {{ product.name }}
+    </div>
+
+    <div class="product-layout">
+
+      <!-- LEFT : PRODUCT IMAGES -->
+      <div class="product-gallery">
+
+        <div class="thumbnail-list">
+
+          <button
+            *ngFor="let image of product.images"
+            [class.active]="selectedImage === image"
+            (click)="selectImage(image)"
+          >
+            <img [src]="image" [alt]="product.name">
+          </button>
+
+        </div>
+
+        <div class="main-image">
+
+          <span class="discount-badge">
+            {{ product.discount }}% OFF
+          </span>
+
+          <img
+            [src]="selectedImage"
+            [alt]="product.name"
+          >
+
+          <button class="main-wishlist">
+            ♡
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT : PRODUCT INFO -->
+      <div class="product-info">
+
+        <span class="product-category">
+          MOBILE ACCESSORIES
+        </span>
+
+        <h1>{{ product.name }}</h1>
+
+        <div class="product-rating">
+
+          <span class="rating-box">
+            ★ {{ product.rating }}
+          </span>
+
+          <span class="reviews">
+            {{ product.reviews }} Reviews
+          </span>
+
+        </div>
+
+        <hr>
+
+
+        <!-- PRICE -->
+        <div class="price-section">
+
+          <span class="label">
+            Special Price
+          </span>
+
+          <div class="price-row">
+
+            <strong>
+              ₹{{ product.price }}
+            </strong>
+
+            <span class="original-price">
+              ₹{{ product.originalPrice }}
+            </span>
+
+            <span class="discount">
+              {{ product.discount }}% OFF
+            </span>
+
+          </div>
+
+          <p class="tax-info">
+            Inclusive of all taxes
+          </p>
+
+        </div>
+
+
+        <!-- OFFERS -->
+        <div class="offers">
+
+          <h3>Available Offers</h3>
+
+          <div class="offer-item">
+            🏷️
+            <span>
+              Special discount on selected accessories
+            </span>
+          </div>
+
+          <div class="offer-item">
+            💳
+            <span>
+              Extra savings on online payments
+            </span>
+          </div>
+
+          <div class="offer-item">
+            🚚
+            <span>
+              Free delivery on orders above ₹499
+            </span>
+          </div>
+
+        </div>
+
+
+        <!-- QUANTITY -->
+        <div class="quantity-section">
+
+          <span>Quantity</span>
+
+          <div class="quantity-control">
+
+            <button (click)="decreaseQuantity()">
+              −
+            </button>
+
+            <strong>{{ quantity }}</strong>
+
+            <button (click)="increaseQuantity()">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+        <div class="product-actions">
+
+          <button class="add-cart" (click)="addToCart()">
+            🛒 Add to Cart
+          </button>
+
+          <button class="buy-now" (click)="buyNow()">
+            Buy Now
+          </button>
+
+        </div>
+
+
+        <!-- DELIVERY -->
+        <div class="delivery-info">
+
+          <div>
+            <span>🚚</span>
+
+            <p>
+              <strong>Fast Delivery</strong>
+              Estimated delivery in 3-5 days
+            </p>
+          </div>
+
+          <div>
+            <span>🔒</span>
+
+            <p>
+              <strong>Secure Payment</strong>
+              Safe & secure checkout
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PRODUCT DESCRIPTION -->
+    <section class="product-description">
+
+      <h2>Product Description</h2>
+
+      <p>
+        {{ product.description }}
+      </p>
+
+    </section>
+
+
+    <!-- SPECIFICATIONS -->
+    <section class="specifications">
+
+      <h2>Specifications</h2>
+
+      <div class="spec-grid">
+
+        <div>
+          <span>Product Type</span>
+          <strong>Mobile Accessory</strong>
+        </div>
+
+        <div>
+          <span>Condition</span>
+          <strong>Brand New</strong>
+        </div>
+
+        <div>
+          <span>Warranty</span>
+          <strong>7 Days Replacement</strong>
+        </div>
+
+        <div>
+          <span>Delivery</span>
+          <strong>Available Across India</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</div>
